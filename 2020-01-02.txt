@@ -1,0 +1,3 @@
+{"type": "Reference", "data": {"PNL": 32231.2, "timestamp": "2019-12-19T15:17:00"}}
+{"type": "Reference", "data": {"PNL": 32231.2, "timestamp": "2019-12-19T15:17:00"}}
+
