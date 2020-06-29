@@ -11,42 +11,44 @@ class Chart1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dp: {},
+      nn: {
+        title: {
+          text: "",
+        },
+        data: [],
+      },
     };
   }
 
   componentDidMount = (event) => {
-    const socket = this.props.socket;
+   const socket = this.props.socket;
     socket.on("data1", (msg) => {
-      dps1 = msg;
-      
-      this.setState({
-          dp: dps1,
+      console.log("DATA1===",msg)
+      dps1 = msg.list1;
+      const dataa = [
+        {
+          type: "line",
+          indexLabel: "{y}",
+          dataPoints: dps1,
         },
-      );
-      
+      ];
+      this.setState({
+        nn: {
+          title: {
+            text: msg.chart_name,
+          },
+          data: dataa,
+        },
+      });
+      // console.log(this.state.nn);
     });
   };
   render() {
-    console.log(this.state)
+    // console.log('CHART1==',this.state)
     return (
       <div>
         <CanvasJSChart
-          options={{
-            animationEnabled: true,
-            exportEnabled: true,
-            theme: "light2", // "light1", "dark1", "dark2"
-            title:{
-              text: "Reference1"
-            },
-            data: [
-              {
-                type: "line",
-                indexLabel: "{y}",
-                dataPoints: this.props.dp,
-              },
-            ],
-          }}
+          options={this.state.nn}
           onRef={(ref) => (this.chart = ref)}
         />
       </div>

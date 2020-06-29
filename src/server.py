@@ -43,87 +43,61 @@ def tailing(path, *filename):
         for file in filename:
             line = tail(f'{path}{file}')
             if line:
-                data = json.loads(line)
-                print('Tailing===', data)
+                datapoints = json.loads(line)
+                print('Tailing===', datapoints)
 
-                if data["type"] == "Reference1":
+                data = {'chart_name': datapoints['chartname'], 'list1': [datapoints["data0"], datapoints["data1"], datapoints["data2"],
+                                                                         datapoints["data3"], datapoints["data4"], datapoints["data5"],
+                                                                         datapoints["data6"], datapoints["data7"], datapoints["data8"], datapoints["data9"], datapoints["data10"]]}
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data1', list1, broadcast=True)
+                if datapoints["type"] == "Reference1":
 
-                if data["type"] == "Reference2":
+                    socketio.emit('data1', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data2', list1, broadcast=True)
+                if datapoints["type"] == "Reference2":
 
-                if data["type"] == "Reference3":
+                    socketio.emit('data2', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data3', list1, broadcast=True)
+                if datapoints["type"] == "Reference3":
 
-                if data["type"] == "Reference4":
+                    socketio.emit('data3', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data4', list1, broadcast=True)
+                if datapoints["type"] == "Reference4":
 
-                if data["type"] == "Reference5":
+                    socketio.emit('data4', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data5', list1, broadcast=True)
+                if datapoints["type"] == "Reference5":
 
-                if data["type"] == "Reference6":
+                    socketio.emit('data5', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data6', list1, broadcast=True)
+                if datapoints["type"] == "Reference6":
 
-                if data["type"] == "Reference7":
+                    socketio.emit('data6', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data7', list1, broadcast=True)
+                if datapoints["type"] == "Reference7":
 
-                if data["type"] == "Reference8":
+                    socketio.emit('data7', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data8', list1, broadcast=True)
+                if datapoints["type"] == "Reference8":
 
-                if data["type"] == "Reference9":
+                    socketio.emit('data8', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data9', list1, broadcast=True)
+                if datapoints["type"] == "Reference9":
 
-                if data["type"] == "Reference10":
+                    socketio.emit('data9', data, broadcast=True)
 
-                    list1 = [data["data0"], data["data1"], data["data2"],
-                             data["data3"], data["data4"], data["data5"],
-                             data["data6"], data["data7"], data["data8"], data["data9"]]
-                    socketio.emit('data10', list1, broadcast=True)
-        socketio.sleep(1)
-        sleep(0.5)
+                if datapoints["type"] == "Reference10":
+
+                    socketio.emit('data10', data, broadcast=True)
+        socketio.sleep(2)
 
 
 def graph():
     try:
         file_list = ['test1.txt', 'test2.txt', 'test3.txt',
                      'test4.txt', 'test5.txt', 'test6.txt', 'test7.txt', 'test8.txt', 'test9.txt', 'test10.txt']
-        tailing('/home/chetan/Desktop/Work/gdfShikha/finalGaph/graph/src/', *file_list)
+        tailing(
+            '/home/chetan/Desktop/Work/gdfShikha/finalGaph/graph/src/datafiles/', *file_list)
     except ValueError:
         pass
 

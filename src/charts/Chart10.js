@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import "./App.css";
 import CanvasJSReact from "./canvasjs.react";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -7,13 +7,13 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 let dps1 = [];
 
-class Test extends Component {
+class Chart10 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       nn: {
         title: {
-          text: "Reference10",
+          text: "",
         },
         data: [],
       },
@@ -21,9 +21,10 @@ class Test extends Component {
   }
 
   componentDidMount = (event) => {
-    const socket = this.props.socket;
+   const socket = this.props.socket;
     socket.on("data10", (msg) => {
-      dps1 = msg;
+      console.log("DATA10===",msg)
+      dps1 = msg.list1;
       const dataa = [
         {
           type: "line",
@@ -34,16 +35,16 @@ class Test extends Component {
       this.setState({
         nn: {
           title: {
-            text: "Reference10",
+            text: msg.chart_name,
           },
           data: dataa,
         },
       });
-      console.log(this.state.nn);
+      // console.log(this.state.nn);
     });
   };
   render() {
-    console.log(this.state)
+    // console.log('CHART1==',this.state)
     return (
       <div>
         <CanvasJSChart
@@ -56,4 +57,4 @@ class Test extends Component {
 }
 
 
-export default Test;
+export default Chart10;

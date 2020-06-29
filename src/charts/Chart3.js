@@ -13,7 +13,7 @@ class Chart3 extends Component {
     this.state = {
       nn: {
         title: {
-          text: "Reference3",
+          text: "",
         },
         data: [],
       },
@@ -21,9 +21,10 @@ class Chart3 extends Component {
   }
 
   componentDidMount = (event) => {
-    const socket = this.props.socket;
+   const socket = this.props.socket;
     socket.on("data3", (msg) => {
-      dps1 = msg;
+      console.log("DATA3===",msg)
+      dps1 = msg.list1;
       const dataa = [
         {
           type: "line",
@@ -34,16 +35,16 @@ class Chart3 extends Component {
       this.setState({
         nn: {
           title: {
-            text: "Reference3",
+            text: msg.chart_name,
           },
           data: dataa,
         },
       });
-      console.log(this.state.nn);
+      // console.log(this.state.nn);
     });
   };
   render() {
-    console.log(this.state)
+    // console.log('CHART1==',this.state)
     return (
       <div>
         <CanvasJSChart
